@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Loader from "./Loader";
 
+
 const Giphy = () => {
 
     const [data, setData] = useState([]);
@@ -13,11 +14,7 @@ const Giphy = () => {
 
     const [search, setBuscar] = useState("");
 
-    //const [paginaActual, setPaginaActual], useState(1);
     
-   // const [itemPagina, setItemPgina], useState(25)
-
-    //page 
 
 
     useEffect(() => {
@@ -105,10 +102,36 @@ const Giphy = () => {
 
     };
 
+    
+
+    const subirGifs = async load => {
+
+        load.preventDefault();
+        setIsError(false);
+        setIsLoading(true);
+
+    const results = await axios.post("https://upload.giphy.com/v1/gifs", {
+        params: {
+            api_key: "shuNeLlTFu1sZGHerwvhss3T23dr5w52",
+            limit: 1000
+        }
+    })
+
+    setData(results.data);
+    console.log(results)
+    setIsLoading(false);
+
+    };
+
+    
+
+
+    
+    
 
 
     return (
-        <div className="m-2">
+        <div className="App">
             {renderError()}
             <form className="form-inline justify-content-center m-2">
 
@@ -119,6 +142,21 @@ const Giphy = () => {
                     Ir
                 </button>
             </form>
+
+            <form className="subir-gifs">
+                <p >
+                Cargar Gif  <input type="file" />
+                <button onClick={subirGifs} type="submit"> Subir Gifs </button>
+                </p>
+            </form>
+
+            
+
+
+            
+            
+
+
         <div className="container gifs"> {renderGifs() } </div>
         </div>
     )

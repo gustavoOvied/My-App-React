@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: white;
 }
 
 .gifs {
@@ -21,4 +21,9 @@ body {
 .form-control {
     width:40%;
 }
+
+.App {
+    background: var(--theme-page-background);
+    color: var(--theme-page-text);
+  }
 
